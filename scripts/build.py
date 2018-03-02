@@ -1,5 +1,5 @@
 build="g++"
-options="-lGL -lGLU -lglut -lm -pthread -w -std=c++11 -g"
+options="-std=c++11"
 Name="game"
 from subprocess import call
 from tree import tree 
