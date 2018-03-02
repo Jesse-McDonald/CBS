@@ -1,5 +1,5 @@
 build="g++"
-options="-std=c++11"
+options="-lGL -lGLU -lglut -lm -pthread -w -std=c++11 -g"
 Name="game"
 from subprocess import call
 from tree import tree 
@@ -17,10 +17,10 @@ for item in files:
 	name=item
 	name=name.replace("/src","/build")
 	name=name.replace(".cpp",".o");
-	buildScript+=(" ".join([build,"-c","\""+item+"\"",options]+include+["-o "+"\""+name+"\""]))+'\n'
-	item=item.replace(".cpp",".o")
-	item=item.replace("/src","/build")
-	linking+="\""+item+"\" "
+	if not(os.path.exists(name) and os.path.getmtime(item)<os.path.getmtime(name)):
+		buildScript+=(" ".join([build,"-c","\""+item+"\"",options]+include+["-o "+"\""+name+"\""]))+'\n'
+	
+	linking+="\""+name+"\" "
 buildFile=open(cwd+"/scripts/build",'w');
 buildFile.write(buildScript)
 buildFile.write(build+" "+linking+options+" -o "+Name+'\n')
