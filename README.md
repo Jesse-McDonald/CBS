@@ -5,6 +5,3 @@ The system simply compiles and links all files in all sub directories
 use #include <file.h> for all includes rather than #include "file.h"
 build system will assemble the "build" directory with identical structure and .o files then build the final
 system is ran using make
-
-Future features
-only compile modified files
